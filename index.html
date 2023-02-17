@@ -1,1 +1,86 @@
-Hello World
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>jsMind</title>
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="//cdn.jsdelivr.net/npm/jsmind/style/jsmind.css"
+        />
+        <style type="text/css">
+            #jsmind_container {
+                width: 1200px;
+                height: 800px;
+                border: solid 1px #ccc;
+                /*background:#f4f4f4;*/
+                background: #f4f4f4;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="jsmind_container"></div>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/jsmind/es6/jsmind.js"></script>
+        <script
+            type="text/javascript"
+            src="//cdn.jsdelivr.net/npm/jsmind/es6/jsmind.draggable-node.js"
+        ></script>
+        <script type="text/javascript">
+            function load_jsmind() {
+                var mind = {
+                    meta: {
+                        name: 'demo',
+                        author: 'joneswang',
+                        version: '0.2',
+                    },
+                    format: 'node_array',
+                    data: [
+                        { id: 'root', isroot: true, topic: 'Leetcode Questions' },
+
+                        {
+                            'id': 'sub1',
+                            'parentid': 'root',
+                            'topic': 'Design',
+                            'background-color': '#0000ff',
+                        },
+                        { id: 'sub11', parentid: 'root', topic: 'Arrays & String' },
+                        { id: 'sortsearch', parentid: 'sub11', topic: 'Sort & Search' },
+                        { id: 'math', parentid: 'root', topic: 'Math' },
+                        { id: 'sub12', parentid: 'sub11', topic: 'Two Pointers & Sliding Window' },
+                        { id: 'sub13', parentid: 'sub11', topic: 'Hash Table & Map' },
+                        { id: 'greedy', parentid: 'sortsearch', topic: 'Greedy' },
+                        { id: 'sub2', parentid: 'greedy', topic: 'Dynamic Programming' },
+                        { id: 'heap', parentid: 'sub11', topic: 'Heap' },
+                        { id: 'stack', parentid: 'sub11', topic: 'Stack' },
+                        { id: 'queue', parentid: 'sub11', topic: 'Queue' },
+                        { id: 'graph', parentid: 'root', topic: 'Graph' },
+                        { id: 'linkedlist', parentid: 'root', topic: 'Linked List' },
+                        { id: 'tree', parentid: 'root', topic: 'Tree' },
+                        {
+                            'id': 'sub22',
+                            'parentid': 'sub2',
+                            'topic': 'sub22',
+                            'foreground-color': '#33ff33',
+                        },
+
+                        { id: 'sub3', parentid: 'root', topic: 'DFS & BFS' },
+                    ],
+                };
+                var options = {
+                    container: 'jsmind_container',
+                    editable: true,
+                    theme: 'primary',
+                };
+                var jm = jsMind.show(options, mind);
+                // jm.set_readonly(true);
+                // var mind_data = jm.get_data();
+                // alert(mind_data);
+                jm.add_node('sub2', 'sub23', 'new node', { 'background-color': 'red' });
+                jm.set_node_color('sub21', 'green', '#ccc');
+            }
+
+            load_jsmind();
+        </script>
+    </body>
+</html>

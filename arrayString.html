@@ -31,7 +31,10 @@
               function(err) { console.error("Execute error", err); })
 		.then(data => {
 			console.log(data);
-			console.log(data.result.sheets[0].data[0].rowData[0].values[0].formattedValue);
+			// console.log(data.result.sheets[0].data[0].rowData[0].values[0].formattedValue);
+			console.log(data.sheets);
+			console.log(data.sheets[0]);
+			console.log(data.sheets[0].data[0].rowData.length);
 		});
   }
   gapi.load("client:auth2", function() {
@@ -40,4 +43,4 @@
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
-<h1>version4<h1>
+<h1>version5<h1>

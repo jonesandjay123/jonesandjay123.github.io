@@ -29,9 +29,9 @@
                 console.log("Response", response);
 
 				// displayData(response.result.sheets[0].data[0].rowData[0].values);
-				displayData(response.result.values);
 				console.log("displayData1: ", response.result.sheets[0].data[0].rowData[0].values);
 				console.log("displayData2: ", response.result.values);
+				displayData(response.result.values);
 
               },
               function(err) { console.error("Execute error", err); })
@@ -59,7 +59,7 @@
 <button onclick="execute()">execute</button>
 
 
-<h1>version20</h1>
+<h1>version21</h1>
 
 	<table id="myTable">
 		<thead>

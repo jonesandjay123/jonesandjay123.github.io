@@ -27,6 +27,9 @@
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
                 console.log("Response", response);
+
+				displayData(response.result.sheets[0].data[0].rowData[0].values);
+
   console.log(response.result.sheets); //打印出所有頁簽的詳細信息
   console.log(response.result.sheets[0].data[0].rowData); //打印第一個頁簽第一行的數據
   console.log(response.result.sheets[0].data[0].rowData[0].values); //打印第一個頁簽第一行的所有單元格內容
@@ -37,19 +40,19 @@
     gapi.auth2.init({client_id: "1060837799587-rma4m59huee641r2cjbdvgjvdf75p7q3.apps.googleusercontent.com"});
   });
 
-  function displayData() {
-        google.script.run.withSuccessHandler(function(data) {
-          var table = document.getElementById("myTable");
-          var tbody = table.querySelector("tbody");
-          for (var i = 0; i < data.length; i++) {
-            var row = tbody.insertRow(-1);
-            for (var j = 0; j < data[i].length; j++) {
-              var cell = row.insertCell(-1);
-              cell.textContent = data[i][j];
-            }
-          }
-        }).getData();
-      }
+  function displayData(data) {
+  var table = document.getElementById("myTable");
+  var tbody = table.querySelector("tbody");
+  // 先清空表格內容
+  tbody.innerHTML = "";
+  for (var i = 0; i < data.length; i++) {
+    var row = tbody.insertRow(-1);
+    for (var j = 0; j < data[i].length; j++) {
+      var cell = row.insertCell(-1);
+      cell.textContent = data[i][j].formattedValue;
+    }
+  }
+}
 
       window.addEventListener("load", displayData);
 
@@ -58,7 +61,7 @@
 <button onclick="execute()">execute</button>
 
 
-<h1>version13<h1>
+<h1>version14<h1>
 
 	<table id="myTable">
 		<thead>

@@ -12,64 +12,63 @@
         .then(function() { console.log("Sign-in successful"); },
               function(err) { console.error("Error signing in", err); });
   }
+
   function loadClient() {
-    gapi.client.setApiKey("AIzaSyAFzJwrcMMZ8-h2oBH8Hzc7-zZ92IXfLwo");
+    gapi.client.setApiKey("AIzaSyAFzJwrcMMZ8-h2oBH8Hzc7-zZ92IXfLwo"); // 在這裡換成你的 API Key
     return gapi.client.load("https://sheets.googleapis.com/$discovery/rest?version=v4")
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
+
   // Make sure the client is loaded and sign-in is complete before calling this method.
   function execute() {
-    return gapi.client.sheets.spreadsheets.get({
-      "spreadsheetId": "1mqgcqumctDugenqEI4TWTTa6JNy0BJVzLClcDrWqHjA",
-      "includeGridData": true
+    return gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId: '1mqgcqumctDugenqEI4TWTTa6JNy0BJVzLClcDrWqHjA', // 在這裡換成你的 Google Sheets 的 ID
+      range: 'Sheet1!A1:D4', // 在這裡換成你要讀取的儲存格範圍，例如 Sheet1!A1:D4
     })
         .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
+            // Handle the results here (response.result has the parsed body).
+            console.log("Response", response);
 
-				displayData(response.result.sheets[0].data[0].rowData[0].values);
-
-  console.log(response.result.sheets); //打印出所有頁簽的詳細信息
-  console.log(response.result.sheets[0].data[0].rowData); //打印第一個頁簽第一行的數據
-  console.log(response.result.sheets[0].data[0].rowData[0].values); //打印第一個頁簽第一行的所有單元格內容
-              },
-              function(err) { console.error("Execute error", err); })
+            displayData(response.result.values);
+          },
+          function(err) { console.error("Execute error", err); });
   }
+
   gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: "1060837799587-rma4m59huee641r2cjbdvgjvdf75p7q3.apps.googleusercontent.com"});
+    gapi.auth2.init({client_id: "1060837799587-rma4m59huee641r2cjbdvgjvdf75p7q3.apps.googleusercontent.com"}); // 在這裡換成你的 Client ID
   });
 
   function displayData(data) {
-  var table = document.getElementById("myTable");
-  var tbody = table.querySelector("tbody");
-  // 先清空表格內容
-  tbody.innerHTML = "";
-  for (var i = 0; i < data.length; i++) {
-    var row = tbody.insertRow(-1);
-    for (var j = 0; j < data[i].length; j++) {
-      var cell = row.insertCell(-1);
-      cell.textContent = data[i][j].formattedValue;
+    var table = document.getElementById("myTable");
+    var tbody = table.querySelector("tbody");
+    // 先清空表格內容
+    tbody.innerHTML = "";
+    for (var i = 0; i < data.length; i++) {
+      var row = tbody.insertRow(-1);
+      for (var j = 0; j < data[i].length; j++) {
+        var cell = row.insertCell(-1);
+        cell.textContent = data[i][j];
+      }
     }
   }
-}
 
 </script>
+
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
 
+<h1>version18</h1>
 
-<h1>version16</h1>
-
-	<table id="myTable">
-		<thead>
-		  <tr>
-			<th>列 1</th>
-			<th>列 2</th>
-			<th>列 3</th>
-			<th>列 4</th>
-		  </tr>
-		</thead>
-		<tbody>
-		</tbody>
-	  </table>
+<table id="myTable">
+  <thead>
+    <tr>
+      <th>列 1</th>
+      <th>列 2</th>
+      <th>列 3</th>
+      <th>列 4</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>

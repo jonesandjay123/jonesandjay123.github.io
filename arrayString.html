@@ -39,9 +39,15 @@
     gapi.auth2.init({client_id: "1060837799587-rma4m59huee641r2cjbdvgjvdf75p7q3.apps.googleusercontent.com"});
   });
 
+  // iterate through the data array and append to the output div
   function printDataIntoLabel(data) {
-    var output = document.getElementById("output");
-    output.innerHTML = data;
+	  var outputDiv = document.getElementById('output');
+	  for (var i = 0; i < data.length; i++) {
+		  var node = document.createElement("LI");                 // Create a <li> node
+		  var textnode = document.createTextNode(data[i]);         // Create a text node
+		  node.appendChild(textnode);                              // Append the text to <li>
+		  outputDiv.appendChild(node);
+	  }
 }
 
 </script>
@@ -49,6 +55,6 @@
 <button onclick="execute()">execute</button>
 
 
-<h1>version1</h1>
+<h1>version2</h1>
 
 <h2 id="output"></h2>

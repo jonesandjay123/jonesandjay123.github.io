@@ -28,7 +28,7 @@
                 // Handle the results here (response.result has the parsed body).
                 console.log("Response", response);
               },
-              function(err) { console.error("Execute error", err); }).then(data => {console.log(data);});
+              function(err) { console.error("Execute error", err); }).then(data => {console.log(data.sheets[0].data[0]);});
   }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "1060837799587-rma4m59huee641r2cjbdvgjvdf75p7q3.apps.googleusercontent.com"});
@@ -36,4 +36,4 @@
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
-<h1>version2<h1>
+<h1>version3<h1>

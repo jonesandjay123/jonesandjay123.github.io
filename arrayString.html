@@ -44,7 +44,9 @@
 	  var outputDiv = document.getElementById('output');
 	  for (var i = 0; i < data.length; i++) {
 		  var node = document.createElement("LI");                 // Create a <li> node
-		  var textnode = document.createTextNode(data[i]);         // Create a text node
+		console.log(data[i]);
+		console.log(data[i].formattedValue);
+		  var textnode = document.createTextNode(data[i].formattedValue);         // Create a text node
 		  node.appendChild(textnode);                              // Append the text to <li>
 		  outputDiv.appendChild(node);
 	  }
@@ -55,6 +57,6 @@
 <button onclick="execute()">execute</button>
 
 
-<h1>version2</h1>
+<h1>version4</h1>
 
 <h2 id="output"></h2>

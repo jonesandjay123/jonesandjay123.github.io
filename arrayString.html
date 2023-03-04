@@ -32,14 +32,45 @@
   console.log(response.result.sheets[0].data[0].rowData[0].values); //打印第一個頁簽第一行的所有單元格內容
               },
               function(err) { console.error("Execute error", err); })
-		// .then(data => {
-		// 	console.log(data);
-		// });
   }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "1060837799587-rma4m59huee641r2cjbdvgjvdf75p7q3.apps.googleusercontent.com"});
   });
+
+
+
+  function displayData() {
+        google.script.run.withSuccessHandler(function(data) {
+          var table = document.getElementById("myTable");
+          var tbody = table.querySelector("tbody");
+          for (var i = 0; i < data.length; i++) {
+            var row = tbody.insertRow(-1);
+            for (var j = 0; j < data[i].length; j++) {
+              var cell = row.insertCell(-1);
+              cell.textContent = data[i][j];
+            }
+          }
+        }).getData();
+      }
+
+      window.addEventListener("load", displayData);
+
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
-<h1>version9<h1>
+
+
+<h1>version11<h1>
+
+	<table id="myTable">
+		<thead>
+		  <tr>
+			<th>列 1</th>
+			<th>列 2</th>
+			<th>列 3</th>
+			<th>列 4</th>
+		  </tr>
+		</thead>
+		<tbody>
+		</tbody>
+	  </table>

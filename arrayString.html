@@ -24,14 +24,24 @@
       "spreadsheetId": "1mqgcqumctDugenqEI4TWTTa6JNy0BJVzLClcDrWqHjA",
       "includeGridData": true
     })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); })
-		.then(data => {
-			console.log(data);
-		});
+        // .then(function(response) {
+        //         // Handle the results here (response.result has the parsed body).
+        //         console.log("Response", response);
+        //       },
+        //       function(err) { console.error("Execute error", err); })
+		// .then(data => {
+		// 	console.log(data);
+		// });
+		gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId: 'YOUR_SPREADSHEET_ID',
+      range: 'Sheet1!A1:E'
+    }).then(function(response) {
+      // Store data in an array
+      var range = response.result;
+      var values = range.values;
+      // Print array contents
+      console.log(values);
+    });
   }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "1060837799587-rma4m59huee641r2cjbdvgjvdf75p7q3.apps.googleusercontent.com"});
@@ -39,4 +49,4 @@
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
-<h1>version8<h1>
+<h1>version9<h1>

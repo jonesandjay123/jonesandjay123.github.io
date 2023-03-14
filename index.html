@@ -1,36 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Mermaid Example update!!</title>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-</head>
-<body>
-  <div class="mermaid">
-    flowchart TD
-        Root[Leetcode] --> arrayString(Arrays & Strings)
-        Root --> design(Design)
-        Root --> tree(Tree)
-        Root --> linkedlist(Linked List)
-        Root --> math(Math)
-        Root --> others(Others)
-        arrayString --> hasing(Hash Table & Maps)
-        arrayString --> stack(Stack)
-        arrayString --> heap(Heap)
-        arrayString --> queue(Queue) --> dfsBfs(DFS & BFS)
-        arrayString --> recursion(Recursion/Backtracking) --> dfsBfs
-        arrayString --> twoPointers(Two Pointers & Sliding Window)
-        arrayString --> matrix(Matrix)
-        arrayString --> sorting(Sort & Search)
-        matrix --> graphs(Graph)
-        graphs --> trie(Trie)
-        graphs --- dfsBfs
-        sorting --> greedy(Greedy)
-        greedy --> dp(Dynamic Programming)
-
-    click Root "posts_all.json" "Json"
-    click arrayString "arrayString.html" "Arrays & Strings"
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mermaid Example update!!</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+  </head>
+  <body>
+    <div class="mermaid"></div>
+    <script src="mermaid-diagram.js"></script>
+    <!-- Insert the version label here -->
+    <p>Version: 1.0.0</p>
+    <!-- Or use a div: <div>Version: 1.0.0</div> -->
+  </body>
 </html>
